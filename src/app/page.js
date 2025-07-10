@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function Home() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
 
   const handleChange = (e) =>
@@ -11,7 +12,7 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/lead", formData);
+      await axios.post(`${apiUrl}/api/lead`, formData);
       alert("Lead submitted successfully!");
       setFormData({ name: "", email: "", phone: "" });
     } catch (err) {
